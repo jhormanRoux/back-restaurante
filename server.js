@@ -11,10 +11,17 @@
   app.use(cors());
   app.use(express.json());
 
+  app.get('/', (req, res) => {
+  res.send('Backend funcionando correctamente');
+});
+
+
   // Rutas
   app.use('/api/categorias', categoriaRoutes);
   app.use('/api/productos', productoRouter);
   app.use('/api/pedidos', pedidoRoutes);
+  
+
  
 
   // Conexión a la base de datos y ejecución del servidor
