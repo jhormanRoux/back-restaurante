@@ -4,15 +4,30 @@ import categoriaRoutes from './src/routes/categoriaRoutes.js';
 import productoRouter from './src/routes/productosRouter.js';
 import pedidoRoutes from './src/routes/pedidoRoutes.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 
-// Middleware CORS, solo permitiendo tu frontend en Vercel
-app.use(cors({
-  origin: 'https://frontend-restaurante.vercel.app',
-  credentials: true, // Si usas cookies o auth, si no, puedes quitarlo
-}));
+// ✅ Configuración dinámica de CORS
+const whitelist = [
+  'http://localhost:5173',
+  'https://frontend-restaurante.vercel.app'
+];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // Postman o servidor interno
+    if (whitelist.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/', (req, res) => {
