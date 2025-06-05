@@ -25,13 +25,17 @@
  
 
   // Conexión a la base de datos y ejecución del servidor
-  sequelize.sync()
-    .then(() => {
-      app.listen(3000, () => {
-        console.log('Servidor corriendo en http://localhost:3000');
-      });
-    })
-    .catch((err) => {
-      console.error('Error al conectar a la base de datos:', err);
-      process.exit(1); // Salir con código de error
+ // ...
+
+// Conexión a la base de datos y ejecución del servidor
+sequelize.sync()
+  .then(() => {
+    const PORT = process.env.PORT || 3000;  // <-- Usa variable de entorno PORT o 3000 si local
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en http://localhost:${PORT}`);
     });
+  })
+  .catch((err) => {
+    console.error('Error al conectar a la base de datos:', err);
+    process.exit(1);
+  });
