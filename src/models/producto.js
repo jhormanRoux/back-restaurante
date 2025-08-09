@@ -19,3 +19,6 @@ const Producto = sequelize.define('Producto', {
 });
 
 export default Producto;
+
+
+

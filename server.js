@@ -39,6 +39,9 @@ app.use('/api/categorias', categoriaRoutes);
 app.use('/api/productos', productoRouter);
 app.use('/api/pedidos', pedidoRoutes);
 
+
+
+
 // Conexión a la base de datos y ejecución del servidor
 sequelize.sync()
   .then(() => {
