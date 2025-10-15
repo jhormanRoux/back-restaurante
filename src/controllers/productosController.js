@@ -20,19 +20,6 @@ export async function obtenerDisponibles(req, res) {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Actualizar la disponibilidad de un producto
 export const actualizarDisponibilidad = async (req, res) => {
   const { id } = req.params;
