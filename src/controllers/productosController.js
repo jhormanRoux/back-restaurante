@@ -46,9 +46,9 @@ export const crearProducto = async (req, res) => {
     const nuevoProducto = await Producto.create({ nombre, categoria_id, disponible });
     res.status(201).json(nuevoProducto);
   } catch (error) {
-    console.error('Error al crear producto:', error);
-    res.status(500).json({ message: 'Error al crear producto' });
-  }
+  console.error('Error al crear producto:', error.message);
+  res.status(500).json({ message: 'Error al crear producto', detalle: error.message });
+}
 };
 
 // Eliminar un producto

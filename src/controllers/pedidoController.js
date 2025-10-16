@@ -33,6 +33,7 @@ export const getPedidosConNombres = async (req, res) => {
     const [result] = await sequelize.query(`
       SELECT 
         pedidos.id,
+        pedidos.mesa,
         p1.nombre AS principio,
         p2.nombre AS proteina,
         p3.nombre AS bebida,
